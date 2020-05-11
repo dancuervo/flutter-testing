@@ -20,7 +20,7 @@ class _ReorderableListDemo extends State<ReorderableListDemo> {
     'G',
     'H',
     'I',
-    'J'
+    'J',
   ];
 
   @override
