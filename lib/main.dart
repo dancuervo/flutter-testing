@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ReorderableListDemo(),
+      home: MyScaffold(),
     );
   }
 }
@@ -135,6 +135,53 @@ class _ListViewCard extends State<ListViewCard> {
           ],
         ),
       ),
+    );
+  }
+}
+
+//=============
+class User {
+  String fullName, userName, photoUrl;
+  User(this.fullName, this.userName, this.photoUrl);
+}
+
+class MyScaffold extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: MyListView(),
+    );
+  }
+}
+
+class MyListView extends StatefulWidget {
+  @override
+  _MyListViewState createState() => _MyListViewState();
+}
+
+class _MyListViewState extends State<MyListView> {
+  List<User> usersList;
+
+  void initState(){
+    usersList = [
+      User('Bruno Díaz', 'Batman','photoUrl'),
+      User('James Bond', '007','photoUrl'),
+      User('Ricardo Tapia', 'Robin','photoUrl'),
+    ];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemBuilder: (context, index){
+          return ListTile(
+            title: Text(usersList[index].fullName),
+            subtitle: Text(usersList[index].userName),
+            leading: Icon(Icons.supervised_user_circle),
+          );
+        },
+        itemCount: usersList.length,
     );
   }
 }
