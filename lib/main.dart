@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-void main() => runApp(ReorderableListDemo());
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ReorderableListDemo(),
+    );
+  }
+}
 
 class ReorderableListDemo extends StatefulWidget {
   @override
@@ -21,13 +29,14 @@ class _ReorderableListDemo extends State<ReorderableListDemo> {
     'H',
     'I',
     'J',
+    'K',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Reorderable ListView Demo"),
+        title: Text("Lista Reordenable - TODO"),
       ),
       body: ReorderableListView(
         onReorder: _onReorder,
