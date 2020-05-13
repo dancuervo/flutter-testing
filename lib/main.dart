@@ -50,7 +50,6 @@ class MyFloatingActionButton extends StatelessWidget {
 class MyTask{
   String task;
   MyTask(this.task);
-  //return MyTask(this.task);
 }
 //ReorderableListView  implementation
 
