@@ -1,15 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:teamz/ViewNewTodo.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class MyToDo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: MyReorderableTaskList(),
-      floatingActionButton: MyFloatingActionButtonNewTodo(),
+      floatingActionButton: MySpeedDial(),
     );
   }
 }
+
+class MySpeedDial extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SpeedDial(
+    // both default to 16
+    marginRight: 18,
+    marginBottom: 20,
+    animatedIcon: AnimatedIcons.menu_close,
+    animatedIconTheme: IconThemeData(size: 22.0),
+    // this is ignored if animatedIcon is non null
+    // child: Icon(Icons.add),
+    visible: true, //_dialVisible true exhibe el boton dial
+    // If true user is forced to close dial manually
+    // by tapping main button and overlay is not rendered.
+    closeManually: false,
+    curve: Curves.bounceIn,
+    overlayColor: Colors.black,
+    overlayOpacity: 0.5,
+    onOpen: () => print('OPENING DIAL'),
+    onClose: () => print('DIAL CLOSED'),
+    tooltip: 'Speed Dial',
+    heroTag: 'speed-dial-hero-tag',
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.black,
+    elevation: 8.0,
+    shape: CircleBorder(),
+    children: [
+    SpeedDialChild(
+    child: Icon(Icons.lightbulb_outline),
+    backgroundColor: Colors.redAccent,
+    label: 'Criar nova Tarefa',
+    labelStyle: TextStyle(fontSize: 18.0),
+    onTap: () => print('FIRST CHILD')
+    ),
+    SpeedDialChild(
+    child: Icon(Icons.add_a_photo),
+    backgroundColor: Colors.blue,
+    label: 'Foto',
+    labelStyle: TextStyle(fontSize: 18.0),
+    onTap: () => print('SECOND CHILD'),
+    ),
+    SpeedDialChild(
+    child: Icon(Icons.keyboard_voice),
+    backgroundColor: Colors.green,
+    label: 'Gravar',
+    labelStyle: TextStyle(fontSize: 18.0),
+    onTap: () => print('THIRD CHILD'),
+    ),
+    ],
+    );
+  }
+}
+
 
 //Reorderable list elements
 //FloatingActionButton
@@ -17,7 +72,7 @@ class MyFloatingActionButtonNewTodo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      child: Icon(Icons.add),
+      child: Icon(Icons.create),
       tooltip: 'Idea',
       onPressed: ()=>{ Navigator.push(context, MaterialPageRoute(builder: (context) => MyNewTodo())) },
     );
